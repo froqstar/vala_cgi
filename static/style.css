@@ -1,0 +1,44 @@
+h2 {
+    color: orange;
+    text-align: center;
+}
+
+body {
+	margin: 100px;
+	background-color: #F8F8FF;
+}
+
+/* unvisited link */
+a:link {
+    color: black;
+}
+
+/* visited link */
+a:visited {
+    color: black;
+}
+
+/* mouse over link */
+a:hover {
+    color: orange;
+}
+
+ul {
+	padding: 0px;
+}
+
+.card {
+	background-color: white;
+	box-shadow: 5px 5px 15px silver;
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+.title {
+	font-size: 50;
+	margin: 20px;
+}
+
+.posttitle {
+	font-size: 20;
+}
