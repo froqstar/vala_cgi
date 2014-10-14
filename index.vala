@@ -3,7 +3,8 @@ enum request_type {
 	HOME,
     POST,
     IMAGE,
-    CSS
+    CSS,
+    IMPRINT
 }
 
 const string BASEPATH_POSTS = "posts";
@@ -42,6 +43,10 @@ public static int main(){
             stdout.printf("Content-Type: text/html;charset=us-ascii\n\n");
             stdout.printf(create_overview_page(20, 0, 100));
             break;
+        case request_type.IMPRINT:
+            stdout.printf("Content-Type: text/html;charset=us-ascii\n\n");
+            stdout.printf(create_imprint_page());
+            break;
         default:
             return 1;
     }
@@ -67,6 +72,8 @@ public static void parse_request(string request) {
     } else if (request_parts[REQUEST_OFFSET] == "style.css") {
     	identifier = request_parts[REQUEST_OFFSET];
         type = request_type.CSS;
+    } else if (request_parts[REQUEST_OFFSET] == "imprint") {
+        type = request_type.IMPRINT;
     } else {
     	identifier = request_parts[REQUEST_OFFSET]; //pagenum
     	type = request_type.HOME;
@@ -79,7 +86,7 @@ public static string create_overview_page(int pagesize, int page, int snippet_le
 	
 	overview += create_header();
     
-    string[] posts = list_directory("posts");
+    string[] posts = list_directory(BASEPATH_POSTS);
     for(int i=page*pagesize; i<page*pagesize+pagesize && i<posts.length; i++) {
     	overview += "\t<a href=\"/cgi-bin/index.cgi/post/%s\">\n".printf(posts[i]);
     	overview += open_content();
@@ -124,6 +131,20 @@ public static string create_navigation(int current_page, int of) {
 	navigation += "</ul>\n";
 		
 	return navigation;
+}
+
+public static string create_imprint_page() {
+	string page = "";
+	
+	page += create_header();
+	page += open_content();
+    
+    page += readFile(BASEPATH_STATIC + "/" + "imprint.html");
+    
+    page += close_content();
+    page += create_footer();
+	
+	return page;
 }
 
 public static string create_header() {
@@ -188,8 +209,5 @@ public static uint8[] readFileBinary(string path) {
     return content;
 }
 
-public void print_binary(uint8[] data) {
-    
-}
 
 
