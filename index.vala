@@ -1,4 +1,6 @@
-//using Gee;
+
+
+
 enum request_type {
 	HOME,
     POST,
@@ -7,7 +9,7 @@ enum request_type {
     IMPRINT
 }
 
-const string BASE_URL = "/cgi-bin/index.cgi";
+const string BASE_URL = "/blog/index.cgi";
 const string BASEPATH_POSTS = "posts";
 const string BASEPATH_STATIC = "static";
 const int REQUEST_OFFSET = 3;
@@ -51,8 +53,6 @@ public static int main(){
         default:
             return 1;
     }
-    
-    //stdout.printf("REQUEST: %s\n", request);
     
     return 0;
 }
