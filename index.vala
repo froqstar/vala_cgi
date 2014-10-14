@@ -148,7 +148,7 @@ public static string create_navigation(int current_page, int of) {
 	for (int i=0; i<of; i++) {
 		navigation += "\t<item><a href=\"%s/%d\">%d</a></item>\n".printf(BASE_URL, i, 1+i);
 	}
-	navigation += "\t<item><a href=\"%s/%d\">&gt;</a></item>\n".printf(BASE_URL, current_page+1);
+	navigation += "\t<item><a href=\"%s/%d\">&gt;</a></item>\n".printf(BASE_URL, (current_page+1<of)? (current_page+1):(of-1));
 	
 	navigation += "</ul>\n";
 		
