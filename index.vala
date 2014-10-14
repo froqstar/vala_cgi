@@ -17,6 +17,7 @@ const string BASEPATH_POSTS = "posts";
 const string BASEPATH_STATIC = "static";
 const int REQUEST_OFFSET = 3;
 
+//request data
 string request;
 string[] request_parts;
 string identifier;
@@ -94,7 +95,7 @@ public static string create_overview_page(int pagesize, int page, int snippet_le
     for(int i=page*pagesize; i<page*pagesize+pagesize && i<posts.length; i++) {
     	overview += "\t<a href=\"%s/post/%s\">\n".printf(BASE_URL, posts[i]);
     	overview += open_content();
-    	overview += create_post(posts[i]);
+    	overview += create_post(posts[i], 100);
     	overview += close_content();
     	overview +=  "</a>\n";
     }
@@ -111,7 +112,7 @@ public static string create_post_page(string id) {
 	post += create_header();
 	post += open_content();
     
-    post += create_post(id);
+    post += create_post(id, -1);
     
     post += close_content();
     post += create_footer();
@@ -119,8 +120,15 @@ public static string create_post_page(string id) {
 	return post;
 }
 
-public static string create_post(string id) {
-	return readFile(BASEPATH_POSTS + "/" + id + "/" + "post.html");
+public static string create_post(string id, int length) {
+	string content = readFile(BASEPATH_POSTS + "/" + id + "/" + "post.html");
+	
+	if (length != -1) {
+		content = content.substring(0, length);
+	}
+	//TODO: 
+	//replace links at creation time
+	return content;
 }
 
 public static string create_navigation(int current_page, int of) {
