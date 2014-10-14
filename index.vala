@@ -124,6 +124,7 @@ public static string create_post_page(string id) {
 	return post;
 }
 
+
 public static string create_post(string id, int length) {
 	string content = readFile(BASEPATH_POSTS + "/" + id + "/" + "post.html");
 	
@@ -136,6 +137,7 @@ public static string create_post(string id, int length) {
 	//replace links at creation time
 	return content;
 }
+
 
 public static string create_navigation(int current_page, int of) {
 	string navigation = "";
@@ -153,6 +155,7 @@ public static string create_navigation(int current_page, int of) {
 	return navigation;
 }
 
+
 public static string create_imprint_page() {
 	string page = "";
 	
@@ -167,6 +170,7 @@ public static string create_imprint_page() {
 	return page;
 }
 
+
 public static string create_header() {
 	string header = readFile(BASEPATH_STATIC + "/" + "header.html");
 	header = header.replace("{title}", BLOG_TITLE);
@@ -175,13 +179,16 @@ public static string create_header() {
 	return header;
 }
 
+
 public static string create_footer() {
 	return readFile(BASEPATH_STATIC + "/" + "footer.html");
 }
 
+
 public static string open_content() {
 	return readFile(BASEPATH_STATIC + "/" + "card_open.html");
 }
+
 
 public static string close_content() {
 	return readFile(BASEPATH_STATIC + "/" + "card_close.html");
@@ -207,6 +214,7 @@ public static string[] list_directory(string dir) {
     return list;
 }
 
+
 public static string readFile(string path) {
     string content;
     try {
@@ -216,6 +224,7 @@ public static string readFile(string path) {
     }
     return content;
 }
+
 
 public static uint8[] readFileBinary(string path) {
     var file = File.new_for_path (path);
