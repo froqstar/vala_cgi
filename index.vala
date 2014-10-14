@@ -127,6 +127,8 @@ public static string create_post_page(string id) {
 public static string create_post(string id, int length) {
 	string content = readFile(BASEPATH_POSTS + "/" + id + "/" + "post.html");
 	
+	if (content == null) return "";
+	
 	if (length != -1) {
 		content = content.substring(0, length);
 	}
@@ -210,7 +212,7 @@ public static string readFile(string path) {
     try {
         FileUtils.get_contents (path, out content);
     } catch (Error e) {
-        error ("%s", e.message);
+        return "Error 404";
     }
     return content;
 }
