@@ -50,7 +50,7 @@ public static int main(){
             break;
         case request_type.HOME:
             stdout.printf("Content-Type: text/html;\n\n");
-            stdout.printf(create_overview_page(5, int.parse(identifier?? "0"), 100));
+            stdout.printf(create_overview_page(10, int.parse(identifier?? "0"), 100));
             break;
         case request_type.IMPRINT:
             stdout.printf("Content-Type: text/html;\n\n");
