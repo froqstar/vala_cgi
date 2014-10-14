@@ -9,6 +9,9 @@ enum request_type {
     IMPRINT
 }
 
+const string BLOG_TITLE = "{madzone}";
+const string BLOG_SUBTITLE = "stuff about Linux, studies and life";
+
 const string BASE_URL = "/blog/index.cgi";
 const string BASEPATH_POSTS = "posts";
 const string BASEPATH_STATIC = "static";
@@ -149,7 +152,11 @@ public static string create_imprint_page() {
 }
 
 public static string create_header() {
-	return readFile(BASEPATH_STATIC + "/" + "header.html");
+	string header = readFile(BASEPATH_STATIC + "/" + "header.html");
+	header = header.replace("{title}", BLOG_TITLE);
+	header = header.replace("{subtitle}", BLOG_SUBTITLE);
+	
+	return header;
 }
 
 public static string create_footer() {
