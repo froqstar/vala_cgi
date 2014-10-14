@@ -50,7 +50,7 @@ public static int main(){
             break;
         case request_type.HOME:
             stdout.printf("Content-Type: text/html;charset=us-ascii\n\n");
-            stdout.printf(create_overview_page(20, 0, 100));
+            stdout.printf(create_overview_page(5, int.parse(identifier), 100));
             break;
         case request_type.IMPRINT:
             stdout.printf("Content-Type: text/html;charset=us-ascii\n\n");
@@ -97,12 +97,12 @@ public static string create_overview_page(int pagesize, int page, int snippet_le
     for(int i=page*pagesize; i<page*pagesize+pagesize && i<posts.length; i++) {
     	overview += "\t<a href=\"%s/post/%s\">\n".printf(BASE_URL, posts[i]);
     	overview += open_content();
-    	overview += create_post(posts[i], 100);
+    	overview += create_post(posts[i], 200);
     	overview += close_content();
     	overview +=  "</a>\n";
     }
     
-    overview += create_navigation(int.parse(identifier?? "0"), posts.length/pagesize);
+    overview += create_navigation(int.parse(identifier?? "0"), posts.length/pagesize+1);
     overview += create_footer();
 	
 	return overview;
@@ -136,11 +136,13 @@ public static string create_post(string id, int length) {
 public static string create_navigation(int current_page, int of) {
 	string navigation = "";
 	
-	navigation += "<ul>\n";
+	navigation += "<ul class=\"navigation\">\n";
 	
+	navigation += "\t<item><a href=\"%s/%d\">&lt;</a></item>\n".printf(BASE_URL, (current_page-1>0)? (current_page-1):0);
 	for (int i=0; i<of; i++) {
 		navigation += "\t<item><a href=\"%s/%d\">%d</a></item>\n".printf(BASE_URL, i, 1+i);
 	}
+	navigation += "\t<item><a href=\"%s/%d\">&gt;</a></item>\n".printf(BASE_URL, current_page+1);
 	
 	navigation += "</ul>\n";
 		
@@ -188,7 +190,7 @@ public static string[] list_directory(string dir) {
 	try {
         var directory = File.new_for_path(dir);
 
-        var enumerator = directory.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+        var enumerator = directory.enumerate_children(FileAttribute.STANDARD_NAME, 0);
 
         FileInfo file_info;
         while ((file_info = enumerator.next_file ()) != null) {

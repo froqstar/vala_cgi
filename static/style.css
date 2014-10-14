@@ -7,7 +7,6 @@ body {
 	margin-left: auto;
     margin-right: auto;
 	background-color: #F8F8FF;
-	align: center;
 }
 
 /* unvisited link */
@@ -41,6 +40,7 @@ ul {
 
 .title {
 	font-size: 32;
+	color: orange;
 	margin: 20px;
 }
 
@@ -60,6 +60,10 @@ ul {
 
 .imprint {
 	color: silver;
+	text-align: center;
+}
+
+.navigation {
 	text-align: center;
 }
 
