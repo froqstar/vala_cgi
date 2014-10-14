@@ -7,6 +7,7 @@ enum request_type {
     IMPRINT
 }
 
+const string BASE_URL = "/cgi-bin/index.cgi";
 const string BASEPATH_POSTS = "posts";
 const string BASEPATH_STATIC = "static";
 const int REQUEST_OFFSET = 3;
@@ -88,7 +89,7 @@ public static string create_overview_page(int pagesize, int page, int snippet_le
     
     string[] posts = list_directory(BASEPATH_POSTS);
     for(int i=page*pagesize; i<page*pagesize+pagesize && i<posts.length; i++) {
-    	overview += "\t<a href=\"/cgi-bin/index.cgi/post/%s\">\n".printf(posts[i]);
+    	overview += "\t<a href=\"%s/post/%s\">\n".printf(BASE_URL, posts[i]);
     	overview += open_content();
     	overview += create_post(posts[i]);
     	overview += close_content();
@@ -125,7 +126,7 @@ public static string create_navigation(int current_page, int of) {
 	navigation += "<ul>\n";
 	
 	for (int i=0; i<of; i++) {
-		navigation += "\t<item><a href=\"/cgi-bin/index.cgi/%d\">%d</a></item>\n".printf(i, 1+i);
+		navigation += "\t<item><a href=\"%s/%d\">%d</a></item>\n".printf(BASE_URL, i, 1+i);
 	}
 	
 	navigation += "</ul>\n";
