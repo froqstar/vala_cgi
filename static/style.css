@@ -55,7 +55,10 @@ ul {
 }
 
 .code {
+	font-family: "Courier New", Courier, monospace;
 	background-color: silver;
+	padding: 5px;
+	width: auto;
 }
 
 .imprint {

@@ -36,7 +36,7 @@ public static int main(){
     
     switch (type) {
         case request_type.POST:
-            stdout.printf("Content-Type: text/html;charset=us-ascii\n\n");
+            stdout.printf("Content-Type: text/html;\n\n");
             stdout.printf(create_post_page(identifier));
             break;
         case request_type.IMAGE:
@@ -45,15 +45,15 @@ public static int main(){
             stdout.write(data, data.length);
             break;
         case request_type.CSS:
-            stdout.printf("Content-Type: text/css;charset=us-ascii\n\n");
+            stdout.printf("Content-Type: text/css;\n\n");
             stdout.printf(readFile(BASEPATH_STATIC + "/" + identifier));
             break;
         case request_type.HOME:
-            stdout.printf("Content-Type: text/html;charset=us-ascii\n\n");
+            stdout.printf("Content-Type: text/html;\n\n");
             stdout.printf(create_overview_page(5, int.parse(identifier?? "0"), 100));
             break;
         case request_type.IMPRINT:
-            stdout.printf("Content-Type: text/html;charset=us-ascii\n\n");
+            stdout.printf("Content-Type: text/html;\n\n");
             stdout.printf(create_imprint_page());
             break;
         default:
