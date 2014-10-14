@@ -1,20 +1,30 @@
 body {
-	margin: 100px;
+	font-family: verdana;
+	font-size: 12;
+	width: 50%;
+	min-width: 50em;
+	max-width: 100em;
+	margin-left: auto;
+    margin-right: auto;
 	background-color: #F8F8FF;
+	align: center;
 }
 
 /* unvisited link */
 a:link {
+	text-decoration: none;
     color: black;
 }
 
 /* visited link */
 a:visited {
+	text-decoration: none;
     color: black;
 }
 
 /* mouse over link */
 a:hover {
+	text-decoration: none;
     color: orange;
 }
 
@@ -30,18 +40,18 @@ ul {
 }
 
 .title {
-	font-size: 50;
+	font-size: 32;
 	margin: 20px;
 }
 
 .subtitle {
-	font-size: 20;
+	font-size: 14;
 	margin: 20px;
-	color: silver;
+	color: gray;
 }
 
 .posttitle {
-	font-size: 20;
+	font-size: 12;
 }
 
 .code {

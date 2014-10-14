@@ -9,8 +9,10 @@ enum request_type {
     IMPRINT
 }
 
-const string BLOG_TITLE = "{madzone}";
-const string BLOG_SUBTITLE = "stuff about Linux, studies and life";
+//const string BLOG_TITLE = "{madzone}";
+//const string BLOG_SUBTITLE = "stuff about Linux, studies and life";
+const string BLOG_TITLE = "{title}";
+const string BLOG_SUBTITLE = "{subtitle}";
 
 const string BASE_URL = "/blog/index.cgi";
 const string BASEPATH_POSTS = "posts";
