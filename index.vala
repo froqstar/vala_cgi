@@ -50,7 +50,7 @@ public static int main(){
             break;
         case request_type.HOME:
             stdout.printf("Content-Type: text/html;charset=us-ascii\n\n");
-            stdout.printf(create_overview_page(5, int.parse(identifier), 100));
+            stdout.printf(create_overview_page(5, int.parse(identifier?? "0"), 100));
             break;
         case request_type.IMPRINT:
             stdout.printf("Content-Type: text/html;charset=us-ascii\n\n");
@@ -82,8 +82,10 @@ public static void parse_request(string request) {
     } else if (request_parts[REQUEST_OFFSET] == "imprint") {
         type = request_type.IMPRINT;
     } else {
-    	identifier = request_parts[REQUEST_OFFSET]; //pagenum
     	type = request_type.HOME;
+    	if (request_parts.length > REQUEST_OFFSET) {
+    		identifier = request_parts[REQUEST_OFFSET]; //pagenum
+    	}
     }
 }
 
