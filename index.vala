@@ -149,7 +149,7 @@ public static string create_navigation(int current_page, int total) {
 	navigation += "\t<item><a href=\"%s/%d\">&lt;</a></item>\n".printf(BASE_URL, (current_page-1>0)? (current_page-1):0);
 	for (int i=0; i<total; i++) {
 		if (i==current_page) {
-			navigation += "\t<item class=\"active\">%d</item>\n".printf(current_page);
+			navigation += "\t<item class=\"active\">%d</item>\n".printf(current_page+1);
 		} else {
 			navigation += "\t<item><a href=\"%s/%d\">%d</a></item>\n".printf(BASE_URL, i, 1+i);
 		}
