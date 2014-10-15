@@ -116,7 +116,7 @@ public static string create_post_page(string id) {
 	post += create_header();
 	post += open_content();
     
-    post += create_post(id, -1);
+    post += create_post(id);
     
     post += close_content();
     post += create_footer();
@@ -124,8 +124,9 @@ public static string create_post_page(string id) {
 	return post;
 }
 
-
-public static string create_post(string id, int length) {
+//creates the content of a post given by the post-id, 
+//can be limited to the first "length" characters.
+public static string create_post(string id, int length = -1) {
 	string content = readFile(BASEPATH_POSTS + "/" + id + "/" + "post.html");
 	
 	if (content == null) return "";
@@ -138,17 +139,22 @@ public static string create_post(string id, int length) {
 	return content;
 }
 
-
-public static string create_navigation(int current_page, int of) {
+//creates a page-navigation, where current_page is the currently active page
+// out of the total pages
+public static string create_navigation(int current_page, int total) {
 	string navigation = "";
 	
 	navigation += "<ul class=\"navigation\">\n";
 	
 	navigation += "\t<item><a href=\"%s/%d\">&lt;</a></item>\n".printf(BASE_URL, (current_page-1>0)? (current_page-1):0);
-	for (int i=0; i<of; i++) {
-		navigation += "\t<item><a href=\"%s/%d\">%d</a></item>\n".printf(BASE_URL, i, 1+i);
+	for (int i=0; i<total; i++) {
+		if (i==current_page) {
+			navigation += "\t<item class=\"active\">%d</item>\n".printf(current_page);
+		} else {
+			navigation += "\t<item><a href=\"%s/%d\">%d</a></item>\n".printf(BASE_URL, i, 1+i);
+		}
 	}
-	navigation += "\t<item><a href=\"%s/%d\">&gt;</a></item>\n".printf(BASE_URL, (current_page+1<of)? (current_page+1):(of-1));
+	navigation += "\t<item><a href=\"%s/%d\">&gt;</a></item>\n".printf(BASE_URL, (current_page+1<total)? (current_page+1):(total-1));
 	
 	navigation += "</ul>\n";
 		
